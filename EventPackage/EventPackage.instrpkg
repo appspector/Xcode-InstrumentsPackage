@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+	<id>PK.EventPackage</id>
+	<title>EventPackage</title>
+	<owner>
+		<name>Deszip</name>
+	</owner>
+
+    <os-signpost-interval-schema>
+        <id>event-schema</id>
+        <title>Events</title>
+        
+        <subsystem>"com.package"</subsystem>
+        <category>"Behavior"</category>
+        <name>"Event tracking"</name>
+        
+        <start-pattern>
+            <message>"size:" ?size-before</message>
+        </start-pattern>
+        <end-pattern>
+            <message>"size:" ?size-after</message>
+        </end-pattern>
+        
+        <column>
+            <mnemonic>size-before-event</mnemonic>
+            <title>Before</title>
+            <type>size-in-bytes</type>
+            <expression>?size-before</expression>
+        </column>
+        <column>
+            <mnemonic>size-after-event</mnemonic>
+            <title>After</title>
+            <type>size-in-bytes</type>
+            <expression>?size-after</expression>
+        </column>
+        
+    </os-signpost-interval-schema>
+    
+    <instrument>
+        <id>com.package</id>
+        <title>Events</title>
+        <category>Behavior</category>
+        <purpose>Events tracking</purpose>
+        <icon>Generic</icon>
+        
+        <create-table>
+            <id>events-table</id>
+            <schema-ref>event-schema</schema-ref>
+        </create-table>
+        
+        <graph>
+            <title>Events rate</title>
+            <lane>
+                <title>Events</title>
+                <table-ref>events-table</table-ref>
+                <plot-template>
+                    <instance-by>size-before-event</instance-by>
+                    <label-format>rate: %llu</label-format>
+                    <value-from>size-before-event</value-from>
+                    <color-from>size-before-event</color-from>
+                    <label-from>size-before-event</label-from>
+                </plot-template>
+            </lane>
+        </graph>
+        
+        <list>
+            <title>List: Events</title>
+            <table-ref>events-table</table-ref>
+            <column>size-before-event</column>
+            <column>size-after-event</column>
+        </list>
+        
+    </instrument>
+</package>
