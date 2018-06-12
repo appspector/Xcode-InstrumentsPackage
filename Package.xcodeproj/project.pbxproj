@@ -13,6 +13,7 @@
 		0EB89F2A20CE65E100E18144 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EB89F2920CE65E100E18144 /* Assets.xcassets */; };
 		0EB89F2D20CE65E100E18144 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB89F2B20CE65E100E18144 /* LaunchScreen.storyboard */; };
 		0EB89F3920CE6B7200E18144 /* EventPackage.instrpkg in Sources */ = {isa = PBXBuildFile; fileRef = 0EB89F3820CE6B7200E18144 /* EventPackage.instrpkg */; };
+		0EEB1F6220CFB91F00CBF532 /* Uptime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEB1F6120CFB91F00CBF532 /* Uptime.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,9 @@
 		0EB89F2E20CE65E100E18144 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EB89F3620CE6B7100E18144 /* EventPackage.instrdst */ = {isa = PBXFileReference; explicitFileType = com.apple.instruments.instrdst; includeInIndex = 0; path = EventPackage.instrdst; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EB89F3820CE6B7200E18144 /* EventPackage.instrpkg */ = {isa = PBXFileReference; lastKnownFileType = "com.apple.instruments.package-definition"; path = EventPackage.instrpkg; sourceTree = "<group>"; };
+		0EEB1F5F20CFB91F00CBF532 /* Package-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Package-Bridging-Header.h"; sourceTree = "<group>"; };
+		0EEB1F6020CFB91F00CBF532 /* Uptime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uptime.h; sourceTree = "<group>"; };
+		0EEB1F6120CFB91F00CBF532 /* Uptime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Uptime.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,9 @@
 				0EB89F2920CE65E100E18144 /* Assets.xcassets */,
 				0EB89F2B20CE65E100E18144 /* LaunchScreen.storyboard */,
 				0EB89F2E20CE65E100E18144 /* Info.plist */,
+				0EEB1F6020CFB91F00CBF532 /* Uptime.h */,
+				0EEB1F6120CFB91F00CBF532 /* Uptime.m */,
+				0EEB1F5F20CFB91F00CBF532 /* Package-Bridging-Header.h */,
 			);
 			path = Package;
 			sourceTree = "<group>";
@@ -124,6 +131,7 @@
 				TargetAttributes = {
 					0EB89F1E20CE65DF00E18144 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					0EB89F3520CE6B7100E18144 = {
 						CreatedOnToolsVersion = 10.0;
@@ -168,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EB89F2520CE65DF00E18144 /* ViewController.swift in Sources */,
+				0EEB1F6220CFB91F00CBF532 /* Uptime.m in Sources */,
 				0EB89F2320CE65DF00E18144 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KUDGTPXKVD;
 				INFOPLIST_FILE = Package/Info.plist;
@@ -329,6 +339,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = AP.Package;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Package/Package-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -338,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KUDGTPXKVD;
 				INFOPLIST_FILE = Package/Info.plist;
@@ -347,6 +360,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = AP.Package;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Package/Package-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
