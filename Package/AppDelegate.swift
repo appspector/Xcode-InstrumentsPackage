@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         checkDebugTime()
         
-        timer = Timer(timeInterval: 1.0, repeats: true, block: { timer in
+        timer = Timer(timeInterval: 0.01, repeats: true, block: { timer in
             self.triggerEvent()
         })
         RunLoop.current.add(timer!, forMode: RunLoop.Mode.default)
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Triggered event")
         
         let before = Int.random(in: 100..<1000)
-        let after = Int.random(in: 100..<before)
+        let after = Int.random(in: 99..<before)
         
         os_signpost(.begin, log: AppDelegate.log, name: "event-tracking", signpostID: AppDelegate.signpostID, "size: %llu", before)
         os_signpost(.end, log: AppDelegate.log, name: "event-tracking", signpostID: AppDelegate.signpostID, "size: %llu", after)

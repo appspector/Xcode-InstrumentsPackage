@@ -43,13 +43,13 @@
             <mnemonic>rate-status</mnemonic>
             <title>Compression</title>
             <type>event-concept</type>
-            <expression>(if (&gt; (- 1 (/ ?size-after ?size-before)) 0.5) then "High" else "Low")</expression>
+            <expression>(if (&gt; (- 1 (/ ?size-after ?size-before)) 0.85) then "High" else "Low")</expression>
         </column>
         <column>
             <mnemonic>rate-color</mnemonic>
             <title>Rate color</title>
             <type>event-concept</type>
-            <expression>(if (&gt; (- 1 (/ ?size-after ?size-before)) 0.5) then "Red" else "Green")</expression>
+            <expression>(if (&gt; (- 1 (/ ?size-after ?size-before)) 0.85) then "Red" else "Green")</expression>
         </column>
         
     </os-signpost-interval-schema>
@@ -95,7 +95,7 @@
             <slice>
                 <column>rate-status</column>
                 <equals>
-                    <event-concept>Low</event-concept>
+                    <event-concept>High</event-concept>
                 </equals>
             </slice>
             
