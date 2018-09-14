@@ -12,13 +12,13 @@
         
         <subsystem>"com.package"</subsystem>
         <category>"Behavior"</category>
-        <name>"Event tracking"</name>
+        <name>"event-tracking"</name>
         
         <start-pattern>
-            <message>"size:" ?size-before</message>
+            <message>"size: " ?size-before</message>
         </start-pattern>
         <end-pattern>
-            <message>"size:" ?size-after</message>
+            <message>"size: " ?size-after</message>
         </end-pattern>
         
         <column>

@@ -25,25 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         timer = Timer(timeInterval: 1.0, repeats: true, block: { timer in
             self.triggerEvent()
         })
-        RunLoop.current.add(timer!, forMode: .defaultRunLoopMode)
+        RunLoop.current.add(timer!, forMode: RunLoop.Mode.default)
         
         return true
     }
 
     func triggerEvent() {
         print("Triggered event")
-        
-        os_signpost(type: .begin,
-                    log: AppDelegate.log,
-                    name: "Event started",
-                    signpostID: AppDelegate.signpostID,
-                    "size:%llu", 42)
-        
-        os_signpost(type: .end,
-                    log: AppDelegate.log,
-                    name: "Event ended",
-                    signpostID: AppDelegate.signpostID,
-                    "size:%llu", 314)
+        os_signpost(.begin, log: AppDelegate.log, name: "event-tracking", signpostID: AppDelegate.signpostID, "size%llu", 42)
+        os_signpost(.end, log: AppDelegate.log, name: "event-tracking", signpostID: AppDelegate.signpostID, "size%llu", 314)
     }
     
     /*
