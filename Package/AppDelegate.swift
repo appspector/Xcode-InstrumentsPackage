@@ -32,8 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func triggerEvent() {
         print("Triggered event")
-        os_signpost(.begin, log: AppDelegate.log, name: "event-tracking", signpostID: AppDelegate.signpostID, "size%llu", 42)
-        os_signpost(.end, log: AppDelegate.log, name: "event-tracking", signpostID: AppDelegate.signpostID, "size%llu", 314)
+        
+        let before = Int.random(in: 100..<1000)
+        let after = Int.random(in: 100..<before)
+        
+        os_signpost(.begin, log: AppDelegate.log, name: "event-tracking", signpostID: AppDelegate.signpostID, "size: %llu", before)
+        os_signpost(.end, log: AppDelegate.log, name: "event-tracking", signpostID: AppDelegate.signpostID, "size: %llu", after)
     }
     
     /*

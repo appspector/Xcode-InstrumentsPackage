@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E123405214BA2A800D3D740 /* TickPackage.instrpkg in Sources */ = {isa = PBXBuildFile; fileRef = 0E123404214BA2A800D3D740 /* TickPackage.instrpkg */; };
+		0E12340F214BCF4A00D3D740 /* RateEvents.tracetemplate in Resources */ = {isa = PBXBuildFile; fileRef = 0E12340E214BCF4A00D3D740 /* RateEvents.tracetemplate */; };
 		0EB89F2320CE65DF00E18144 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB89F2220CE65DF00E18144 /* AppDelegate.swift */; };
 		0EB89F2520CE65DF00E18144 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB89F2420CE65DF00E18144 /* ViewController.swift */; };
 		0EB89F2820CE65DF00E18144 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB89F2620CE65DF00E18144 /* Main.storyboard */; };
@@ -17,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E123402214BA2A800D3D740 /* TickPackage.instrdst */ = {isa = PBXFileReference; explicitFileType = com.apple.instruments.instrdst; includeInIndex = 0; path = TickPackage.instrdst; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E123404214BA2A800D3D740 /* TickPackage.instrpkg */ = {isa = PBXFileReference; lastKnownFileType = "com.apple.instruments.package-definition"; path = TickPackage.instrpkg; sourceTree = "<group>"; };
+		0E12340E214BCF4A00D3D740 /* RateEvents.tracetemplate */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = RateEvents.tracetemplate; sourceTree = "<group>"; };
 		0EB89F1F20CE65DF00E18144 /* Package.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Package.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EB89F2220CE65DF00E18144 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EB89F2420CE65DF00E18144 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,11 +47,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E123403214BA2A800D3D740 /* TickPackage */ = {
+			isa = PBXGroup;
+			children = (
+				0E123404214BA2A800D3D740 /* TickPackage.instrpkg */,
+			);
+			path = TickPackage;
+			sourceTree = "<group>";
+		};
 		0EB89F1620CE65DF00E18144 = {
 			isa = PBXGroup;
 			children = (
 				0EB89F2120CE65DF00E18144 /* Package */,
 				0EB89F3720CE6B7200E18144 /* EventPackage */,
+				0E123403214BA2A800D3D740 /* TickPackage */,
 				0EB89F2020CE65DF00E18144 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +70,7 @@
 			children = (
 				0EB89F1F20CE65DF00E18144 /* Package.app */,
 				0EB89F3620CE6B7100E18144 /* EventPackage.instrdst */,
+				0E123402214BA2A800D3D740 /* TickPackage.instrdst */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +94,7 @@
 		0EB89F3720CE6B7200E18144 /* EventPackage */ = {
 			isa = PBXGroup;
 			children = (
+				0E12340E214BCF4A00D3D740 /* RateEvents.tracetemplate */,
 				0EB89F3820CE6B7200E18144 /* EventPackage.instrpkg */,
 			);
 			path = EventPackage;
@@ -87,6 +103,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0E123401214BA2A800D3D740 /* TickPackage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E123408214BA2A800D3D740 /* Build configuration list for PBXNativeTarget "TickPackage" */;
+			buildPhases = (
+				0E123400214BA2A800D3D740 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TickPackage;
+			productName = TickPackage;
+			productReference = 0E123402214BA2A800D3D740 /* TickPackage.instrdst */;
+			productType = "com.apple.product-type.instruments-package";
+		};
 		0EB89F1E20CE65DF00E18144 /* Package */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0EB89F3120CE65E100E18144 /* Build configuration list for PBXNativeTarget "Package" */;
@@ -109,6 +140,7 @@
 			buildConfigurationList = 0EB89F3A20CE6B7200E18144 /* Build configuration list for PBXNativeTarget "EventPackage" */;
 			buildPhases = (
 				0EB89F3420CE6B7100E18144 /* Sources */,
+				0E12340C214BCF0C00D3D740 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +161,9 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = AppSpector;
 				TargetAttributes = {
+					0E123401214BA2A800D3D740 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					0EB89F1E20CE65DF00E18144 = {
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1000;
@@ -153,11 +188,20 @@
 			targets = (
 				0EB89F1E20CE65DF00E18144 /* Package */,
 				0EB89F3520CE6B7100E18144 /* EventPackage */,
+				0E123401214BA2A800D3D740 /* TickPackage */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0E12340C214BCF0C00D3D740 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E12340F214BCF4A00D3D740 /* RateEvents.tracetemplate in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0EB89F1D20CE65DF00E18144 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -171,6 +215,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0E123400214BA2A800D3D740 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E123405214BA2A800D3D740 /* TickPackage.instrpkg in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0EB89F1B20CE65DF00E18144 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +263,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0E123406214BA2A800D3D740 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KUDGTPXKVD;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Instruments/Packages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "";
+			};
+			name = Debug;
+		};
+		0E123407214BA2A800D3D740 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KUDGTPXKVD;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Instruments/Packages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "";
+			};
+			name = Release;
+		};
 		0EB89F2F20CE65E100E18144 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -393,6 +469,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0E123408214BA2A800D3D740 /* Build configuration list for PBXNativeTarget "TickPackage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E123406214BA2A800D3D740 /* Debug */,
+				0E123407214BA2A800D3D740 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0EB89F1A20CE65DF00E18144 /* Build configuration list for PBXProject "Package" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

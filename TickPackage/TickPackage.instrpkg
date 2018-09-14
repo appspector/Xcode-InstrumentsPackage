@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+	<id>AS.TickPackage</id>
+	<title>TickPackage</title>
+	<owner>
+		<name>Deszip</name>
+	</owner>
+
+    <import-schema>tick</import-schema>
+    
+    <instrument>
+        <id>com.tickpackage</id>
+        <title>Ticks</title>
+        <category>Behavior</category>
+        <purpose>Drawing ticks</purpose>
+        <icon>Generic</icon>
+        
+        <create-table>
+            <id>tick-table</id>
+            <schema-ref>tick</schema-ref>
+        </create-table>
+        
+        <graph>
+            <title>Ticks</title>
+            <lane>
+                <title>Ticks</title>
+                <table-ref>tick-table</table-ref>
+                
+                <plot>
+                    <value-from>time</value-from>
+                </plot>
+
+            </lane>
+        </graph>
+        
+        <list>
+            <title>Ticks</title>
+            <table-ref>tick-table</table-ref>
+            <column>time</column>
+        </list>
+        
+    </instrument>
+    
+</package>

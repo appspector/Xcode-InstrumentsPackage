@@ -33,6 +33,24 @@
             <type>size-in-bytes</type>
             <expression>?size-after</expression>
         </column>
+        <column>
+            <mnemonic>rate</mnemonic>
+            <title>Rate</title>
+            <type>percent</type>
+            <expression>(* 100 (- 1 (/ ?size-after ?size-before)))</expression>
+        </column>
+        <column>
+            <mnemonic>rate-status</mnemonic>
+            <title>Compression</title>
+            <type>event-concept</type>
+            <expression>(if (&gt; (- 1 (/ ?size-after ?size-before)) 0.5) then "High" else "Low")</expression>
+        </column>
+        <column>
+            <mnemonic>rate-color</mnemonic>
+            <title>Rate color</title>
+            <type>event-concept</type>
+            <expression>(if (&gt; (- 1 (/ ?size-after ?size-before)) 0.5) then "Red" else "Green")</expression>
+        </column>
         
     </os-signpost-interval-schema>
     
@@ -53,22 +71,49 @@
             <lane>
                 <title>Events</title>
                 <table-ref>events-table</table-ref>
-                <plot-template>
-                    <instance-by>size-before-event</instance-by>
-                    <label-format>rate: %llu</label-format>
-                    <value-from>size-before-event</value-from>
-                    <color-from>size-before-event</color-from>
-                    <label-from>size-before-event</label-from>
-                </plot-template>
+                <plot>
+                    <value-from>rate</value-from>
+                    <color-from>rate-color</color-from>
+                    <label-from>rate</label-from>
+                </plot>
             </lane>
         </graph>
         
         <list>
-            <title>List: Events</title>
+            <title>Events</title>
             <table-ref>events-table</table-ref>
             <column>size-before-event</column>
             <column>size-after-event</column>
+            <column>rate</column>
+            <column>rate-status</column>
         </list>
         
+        <aggregation>
+            <title>Low rate events</title>
+            <table-ref>events-table</table-ref>
+            
+            <slice>
+                <column>rate-status</column>
+                <equals>
+                    <event-concept>Low</event-concept>
+                </equals>
+            </slice>
+            
+            <hierarchy>
+                <level>
+                    <column>rate</column>
+                </level>
+            </hierarchy>
+            
+            <column>
+                <average>size-before-event</average>
+            </column>
+            <column>
+                <average>size-after-event</average>
+            </column>
+        </aggregation>
+        
     </instrument>
+    
+    
 </package>
