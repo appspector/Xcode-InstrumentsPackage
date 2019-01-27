@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package>
+	<id>AS.Tracer</id>
+	<title>Tracer</title>
+	<owner>
+		<name>Deszip</name>
+	</owner>
+
+    <os-signpost-interval-schema>
+        <id>trace-schema</id>
+        <title>Traces</title>
+        
+        <subsystem>"com.tracer"</subsystem>
+        <category>"Behavior"</category>
+        <name>"tracing"</name>
+        
+        <start-pattern>
+            <message>"span-start: " ?span-name-started ",scope-id:" ?scope-id</message>
+        </start-pattern>
+        <end-pattern>
+            <message>"span-stop: " ?span-name-stopped ",scope-id:" ?scope-id</message>
+        </end-pattern>
+
+        <column>
+            <mnemonic>span-name</mnemonic>
+            <title>Span</title>
+            <type>string</type>
+            <expression>?span-name-started</expression>
+        </column>
+        
+        <column>
+            <mnemonic>span-scope</mnemonic>
+            <title>Scope ID</title>
+            <type>string</type>
+            <expression>?scope-id</expression>
+        </column>
+
+        <column>
+            <mnemonic>status</mnemonic>
+            <title>Status</title>
+            <type>string</type>
+            <expression>(if (not span-name-stopped) then "In Progress" else "Closed")</expression>
+        </column>
+        
+        <column>
+            <mnemonic>status-color</mnemonic>
+            <title>Status color</title>
+            <type>event-concept</type>
+            <expression>(if (not span-name-stopped) then "Red" else "Green")</expression>
+        </column>
+        
+    </os-signpost-interval-schema>
+    
+    <instrument>
+        <id>com.tracer</id>
+        <title>Tracing</title>
+        <category>Behavior</category>
+        <purpose>Tracing</purpose>
+        <icon>Generic</icon>
+        
+        <create-table>
+            <id>traces-table</id>
+            <schema-ref>trace-schema</schema-ref>
+        </create-table>
+        
+        <graph>
+            <title>Trace</title>
+            <lane>
+                <title>Trace</title>
+                <table-ref>traces-table</table-ref>
+                <plot-template>
+                    <instance-by>span-scope</instance-by>
+                    <label-format>Scope: %s</label-format>
+                    <value-from>span-scope</value-from>
+                    <label-from>span-name</label-from>
+                    <color-from>status-color</color-from>
+                </plot-template>
+            </lane>
+        </graph>
+        
+        <list>
+            <title>Spans</title>
+            <table-ref>traces-table</table-ref>
+            <column>span-name</column>
+            <column>span-scope</column>
+            <column>status</column>
+        </list>
+        
+    </instrument>
+    
+</package>

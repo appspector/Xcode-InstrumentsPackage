@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E12340F214BCF4A00D3D740 /* RateEvents.tracetemplate in Resources */ = {isa = PBXBuildFile; fileRef = 0E12340E214BCF4A00D3D740 /* RateEvents.tracetemplate */; };
+		0E1B71C621FD797D00AA0640 /* Tracer.instrpkg in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B71C521FD797D00AA0640 /* Tracer.instrpkg */; };
 		0EB89F2320CE65DF00E18144 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB89F2220CE65DF00E18144 /* AppDelegate.swift */; };
 		0EB89F2520CE65DF00E18144 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB89F2420CE65DF00E18144 /* ViewController.swift */; };
 		0EB89F2820CE65DF00E18144 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB89F2620CE65DF00E18144 /* Main.storyboard */; };
@@ -19,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		0E12340E214BCF4A00D3D740 /* RateEvents.tracetemplate */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = RateEvents.tracetemplate; sourceTree = "<group>"; };
+		0E1B71C321FD797D00AA0640 /* Tracer.instrdst */ = {isa = PBXFileReference; explicitFileType = com.apple.instruments.instrdst; includeInIndex = 0; path = Tracer.instrdst; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E1B71C521FD797D00AA0640 /* Tracer.instrpkg */ = {isa = PBXFileReference; lastKnownFileType = "com.apple.instruments.package-definition"; path = Tracer.instrpkg; sourceTree = "<group>"; };
 		0EB89F1F20CE65DF00E18144 /* Package.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Package.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EB89F2220CE65DF00E18144 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EB89F2420CE65DF00E18144 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,11 +47,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E1B71C421FD797D00AA0640 /* Tracer */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B71C521FD797D00AA0640 /* Tracer.instrpkg */,
+			);
+			path = Tracer;
+			sourceTree = "<group>";
+		};
 		0EB89F1620CE65DF00E18144 = {
 			isa = PBXGroup;
 			children = (
 				0EB89F2120CE65DF00E18144 /* Package */,
 				0EB89F3720CE6B7200E18144 /* EventPackage */,
+				0E1B71C421FD797D00AA0640 /* Tracer */,
 				0EB89F2020CE65DF00E18144 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,6 +70,7 @@
 			children = (
 				0EB89F1F20CE65DF00E18144 /* Package.app */,
 				0EB89F3620CE6B7100E18144 /* EventPackage.instrdst */,
+				0E1B71C321FD797D00AA0640 /* Tracer.instrdst */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,6 +103,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0E1B71C221FD797D00AA0640 /* Tracer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E1B71C921FD797D00AA0640 /* Build configuration list for PBXNativeTarget "Tracer" */;
+			buildPhases = (
+				0E1B71C121FD797D00AA0640 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tracer;
+			productName = Tracer;
+			productReference = 0E1B71C321FD797D00AA0640 /* Tracer.instrdst */;
+			productType = "com.apple.product-type.instruments-package";
+		};
 		0EB89F1E20CE65DF00E18144 /* Package */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0EB89F3120CE65E100E18144 /* Build configuration list for PBXNativeTarget "Package" */;
@@ -133,6 +161,9 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = AppSpector;
 				TargetAttributes = {
+					0E1B71C221FD797D00AA0640 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					0EB89F1E20CE65DF00E18144 = {
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1000;
@@ -157,6 +188,7 @@
 			targets = (
 				0EB89F1E20CE65DF00E18144 /* Package */,
 				0EB89F3520CE6B7100E18144 /* EventPackage */,
+				0E1B71C221FD797D00AA0640 /* Tracer */,
 			);
 		};
 /* End PBXProject section */
@@ -183,6 +215,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0E1B71C121FD797D00AA0640 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E1B71C621FD797D00AA0640 /* Tracer.instrpkg in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0EB89F1B20CE65DF00E18144 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +263,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0E1B71C721FD797D00AA0640 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AM5334753U;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Instruments/Packages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "";
+			};
+			name = Debug;
+		};
+		0E1B71C821FD797D00AA0640 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AM5334753U;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Instruments/Packages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "";
+			};
+			name = Release;
+		};
 		0EB89F2F20CE65E100E18144 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -405,6 +469,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0E1B71C921FD797D00AA0640 /* Build configuration list for PBXNativeTarget "Tracer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E1B71C721FD797D00AA0640 /* Debug */,
+				0E1B71C821FD797D00AA0640 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0EB89F1A20CE65DF00E18144 /* Build configuration list for PBXProject "Package" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
