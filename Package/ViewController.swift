@@ -83,14 +83,14 @@ class ViewController: UIViewController {
     func startSpan(_ name: String, inScope scope: Scope) -> Span {
         let span = Span(name: name, ID: UUID().uuidString, scopeID: scope.ID)
         let startTime = Date().timeIntervalSince1970
-        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: ViewController.signpostID, "span-start:%{public}@,scope-id:%{public}@,start-time:%llu", span.name, span.scopeID, startTime)
+        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: ViewController.signpostID, "span-start:%{public}@,scope-id:%{public}@,start-time:%lld", span.name, span.scopeID, startTime)
         
         return span
     }
     
     func stopSpan(_ span: Span) {
         let stopTime = Date().timeIntervalSince1970
-        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: ViewController.signpostID, "span-stop:%{public}@,scope-id:%{public}@,stop-time:%llu", span.name, span.scopeID, stopTime)
+        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: ViewController.signpostID, "span-stop:%{public}@,scope-id:%{public}@,stop-time:%lld", span.name, span.scopeID, stopTime)
     }
 
 }
