@@ -12,23 +12,38 @@ import os.signpost
 struct Scope {
     let name: String
     let ID: String
+    let signpostID: OSSignpostID
+    
+    init(name: String, ID: String) {
+        self.name = name
+        self.ID = ID
+        self.signpostID = OSSignpostID(log: ViewController.log, object: ID as AnyObject)
+    }
 }
 
 struct Span {
     let name: String
     let ID: String
     let scopeID: String
+    let signpostID: OSSignpostID
+    
+    init(name: String, ID: String, scopeID: String) {
+        self.name = name
+        self.ID = ID
+        self.scopeID = scopeID
+        self.signpostID = OSSignpostID(log: ViewController.log, object: ID as AnyObject)
+    }
 }
 
 class ViewController: UIViewController {
 
     static let log = OSLog(subsystem: "com.tracer", category: "Behavior")
-    static let signpostID = OSSignpostID(log: ViewController.log, object: self as AnyObject)
+    //static let signpostID = OSSignpostID(log: ViewController.log, object: self as AnyObject)
     
     var scopeCounter: Int = 0
     var spanCounter: Int = 0
     var currentScope: Scope?
-    var currentSpan: Span?
+    var currentSpans: [Span] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,17 +59,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func startNewSpan(_ sender: Any) {
-        if currentSpan == nil {
-            guard let scope = currentScope else { return }
-            spanCounter += 1
-            currentSpan = startSpan("Span: \(spanCounter)", inScope: scope)
-        }
+        guard let scope = currentScope else { return }
+        spanCounter += 1
+        let span = startSpan("Span: \(spanCounter)", inScope: scope)
+        currentSpans.append(span)
     }
     
     @IBAction func stopCurrentSpan(_ sender: Any) {
-        guard let span = currentSpan else { return }
+        if currentSpans.count == 0 {
+            return
+        }
+        guard let span = currentSpans.last else { return }
         stopSpan(span)
-        currentSpan = nil
+        currentSpans.removeLast()
     }
     
     @IBAction func closeCurrentScope(_ sender: Any) {
@@ -67,7 +84,7 @@ class ViewController: UIViewController {
     
     func openScope(_ name: String) -> Scope {
         let scope = Scope(name: name, ID: UUID().uuidString)
-        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: ViewController.signpostID, "scope-open: %{public}@", scope.name)
+        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: scope.signpostID, "scope-open: %{public}@", scope.name)
         
         print("Scope opened")
         
@@ -75,7 +92,7 @@ class ViewController: UIViewController {
     }
     
     func closeScope(_ scope: Scope) {
-        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: ViewController.signpostID, "scope-close: %{public}@", scope.name)
+        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: scope.signpostID, "scope-close: %{public}@", scope.name)
         
         print("Scope closed")
     }
@@ -83,14 +100,15 @@ class ViewController: UIViewController {
     func startSpan(_ name: String, inScope scope: Scope) -> Span {
         let span = Span(name: name, ID: UUID().uuidString, scopeID: scope.ID)
         let startTime = Date().timeIntervalSince1970
-        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: ViewController.signpostID, "span-start:%{public}@,scope-id:%{public}@,start-time:%lld", span.name, span.scopeID, startTime)
+        
+        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-start:%{public}@,scope-id:%{public}@,start-time:%lld", span.name, span.scopeID, startTime)
         
         return span
     }
     
     func stopSpan(_ span: Span) {
         let stopTime = Date().timeIntervalSince1970
-        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: ViewController.signpostID, "span-stop:%{public}@,scope-id:%{public}@,stop-time:%lld", span.name, span.scopeID, stopTime)
+        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-stop:%{public}@,scope-id:%{public}@,stop-time:%lld", span.name, span.scopeID, stopTime)
     }
 
 }

@@ -13,13 +13,25 @@
         <subsystem>"com.tracer"</subsystem>
         <category>"Behavior"</category>
         <name>"tracing"</name>
-        
+
         <start-pattern>
             <message>"span-start:" ?span-name-started ",scope-id:" ?scope-id ",start-time:" ?span-start-time</message>
         </start-pattern>
         <end-pattern>
             <message>"span-stop:" ?span-name-stopped ",scope-id:" ?scope-id ",stop-time:" ?span-stop-time</message>
         </end-pattern>
+
+        <start-column>
+            <mnemonic>span-start</mnemonic>
+            <title>Started at</title>
+            <type>time-of-day</type>
+        </start-column>
+        
+        <duration-column>
+            <mnemonic>span-duration</mnemonic>
+            <title>Duration</title>
+            <type>duration</type>
+        </duration-column>
         
         <column>
             <mnemonic>span-name</mnemonic>
@@ -39,27 +51,20 @@
             <mnemonic>status</mnemonic>
             <title>Status</title>
             <type>string</type>
-            <expression>(if (not ?span-name-stopped) then "In Progress" else "Closed")</expression>
+            <expression>(if (not ?span-start-time) then "Closed" else "In progress")</expression>
         </column>
-        
-        <column>
-            <mnemonic>span-duration</mnemonic>
-            <title>Duration</title>
-            <type>duration</type>
-            <expression>(- ?span-stop-time ?span-start-time)</expression>
-        </column>
-        
+
         <column>
             <mnemonic>status-color</mnemonic>
             <title>Status color</title>
             <type>event-concept</type>
             <expression>(if (not ?span-name-stopped) then "Red" else "Green")</expression>
         </column>
-        
+
         <open-interval-template>
-            <mnemonic>span-scope</mnemonic>
-            <expression>?scope-id</expression>
-        
+            <mnemonic>span-name</mnemonic>
+            <expression>?span-name-started</expression>
+
             <mnemonic>status</mnemonic>
             <expression>(if (not ?span-start-time) then "Closed" else "In progress")</expression>
         
@@ -87,9 +92,9 @@
                 <title>Trace</title>
                 <table-ref>traces-table</table-ref>
                 <plot-template>
-                    <instance-by>span-scope</instance-by>
+                    <instance-by>span-name</instance-by>
                     <label-format>Scope: %s</label-format>
-                    <value-from>span-scope</value-from>
+                    <value-from>span-name</value-from>
                     <color-from>status-color</color-from>
                     <label-from>span-name</label-from>
                 </plot-template>
@@ -100,11 +105,11 @@
             <title>Spans</title>
             <table-ref>traces-table</table-ref>
             <column>span-name</column>
-            <column>span-scope</column>
+            <column>span-start</column>
             <column>span-duration</column>
+            <column>span-scope</column>
             <column>status</column>
         </list>
         
     </instrument>
-    
 </package>
