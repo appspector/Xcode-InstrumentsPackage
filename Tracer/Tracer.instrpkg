@@ -15,10 +15,10 @@
         <name>"tracing"</name>
 
         <start-pattern>
-            <message>"span-start:" ?span-name-started ",scope-id:" ?scope-id ",start-time:" ?span-start-time</message>
+            <message>"span-start:" ?span-name-started ",scope-id:" ?scope-id ",span-order:" ?span-order</message>
         </start-pattern>
         <end-pattern>
-            <message>"span-stop:" ?span-name-stopped ",scope-id:" ?scope-id ",stop-time:" ?span-stop-time</message>
+            <message>"span-stop:" ?span-name-stopped ",scope-id:" ?scope-id</message>
         </end-pattern>
 
         <start-column>
@@ -32,6 +32,13 @@
             <title>Duration</title>
             <type>duration</type>
         </duration-column>
+        
+        <column>
+            <mnemonic>span-order</mnemonic>
+            <title>Span No</title>
+            <type>uint32</type>
+            <expression>?span-order</expression>
+        </column>
         
         <column>
             <mnemonic>span-name</mnemonic>
@@ -51,7 +58,7 @@
             <mnemonic>status</mnemonic>
             <title>Status</title>
             <type>string</type>
-            <expression>(if (not ?span-start-time) then "Closed" else "In progress")</expression>
+            <expression>(if (not ?span-order) then "Closed" else "In progress")</expression>
         </column>
 
         <column>
@@ -62,14 +69,17 @@
         </column>
 
         <open-interval-template>
+            <mnemonic>span-order</mnemonic>
+            <expression>?span-order</expression>
+            
             <mnemonic>span-name</mnemonic>
             <expression>?span-name-started</expression>
 
             <mnemonic>status</mnemonic>
-            <expression>(if (not ?span-start-time) then "Closed" else "In progress")</expression>
+            <expression>(if (not ?span-order) then "Closed" else "In progress")</expression>
         
             <mnemonic>status-color</mnemonic>
-            <expression>(if (not ?span-start-time) then "Green" else "Red")</expression>
+            <expression>(if (not ?span-order) then "Green" else "Red")</expression>
         </open-interval-template>
         
     </os-signpost-interval-schema>
@@ -92,7 +102,7 @@
                 <title>Trace</title>
                 <table-ref>traces-table</table-ref>
                 <plot-template>
-                    <instance-by>span-name</instance-by>
+                    <instance-by>span-order</instance-by>
                     <label-format>Scope: %s</label-format>
                     <value-from>span-name</value-from>
                     <color-from>status-color</color-from>
@@ -104,6 +114,7 @@
         <list>
             <title>Spans</title>
             <table-ref>traces-table</table-ref>
+            <column>span-order</column>
             <column>span-name</column>
             <column>span-start</column>
             <column>span-duration</column>
