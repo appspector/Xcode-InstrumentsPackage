@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0E12340F214BCF4A00D3D740 /* RateEvents.tracetemplate in Resources */ = {isa = PBXBuildFile; fileRef = 0E12340E214BCF4A00D3D740 /* RateEvents.tracetemplate */; };
 		0E1B71C621FD797D00AA0640 /* Tracer.instrpkg in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B71C521FD797D00AA0640 /* Tracer.instrpkg */; };
+		0EAB6334222971CC0038BAF0 /* Tracer.tracetemplate in Resources */ = {isa = PBXBuildFile; fileRef = 0EAB6333222971CC0038BAF0 /* Tracer.tracetemplate */; };
+		0EAB6338222974B40038BAF0 /* ASTracer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB6337222974B40038BAF0 /* ASTracer.m */; };
+		0EAB633B222978A40038BAF0 /* ASScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB633A222978A40038BAF0 /* ASScope.m */; };
+		0EAB633E222978B70038BAF0 /* ASSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAB633D222978B70038BAF0 /* ASSpan.m */; };
 		0EB89F2320CE65DF00E18144 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB89F2220CE65DF00E18144 /* AppDelegate.swift */; };
 		0EB89F2520CE65DF00E18144 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB89F2420CE65DF00E18144 /* ViewController.swift */; };
 		0EB89F2820CE65DF00E18144 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EB89F2620CE65DF00E18144 /* Main.storyboard */; };
@@ -22,6 +26,13 @@
 		0E12340E214BCF4A00D3D740 /* RateEvents.tracetemplate */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = RateEvents.tracetemplate; sourceTree = "<group>"; };
 		0E1B71C321FD797D00AA0640 /* Tracer.instrdst */ = {isa = PBXFileReference; explicitFileType = com.apple.instruments.instrdst; includeInIndex = 0; path = Tracer.instrdst; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E1B71C521FD797D00AA0640 /* Tracer.instrpkg */ = {isa = PBXFileReference; lastKnownFileType = "com.apple.instruments.package-definition"; path = Tracer.instrpkg; sourceTree = "<group>"; };
+		0EAB6333222971CC0038BAF0 /* Tracer.tracetemplate */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Tracer.tracetemplate; sourceTree = "<group>"; };
+		0EAB6336222974B40038BAF0 /* ASTracer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASTracer.h; sourceTree = "<group>"; };
+		0EAB6337222974B40038BAF0 /* ASTracer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASTracer.m; sourceTree = "<group>"; };
+		0EAB6339222978A40038BAF0 /* ASScope.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASScope.h; sourceTree = "<group>"; };
+		0EAB633A222978A40038BAF0 /* ASScope.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASScope.m; sourceTree = "<group>"; };
+		0EAB633C222978B70038BAF0 /* ASSpan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASSpan.h; sourceTree = "<group>"; };
+		0EAB633D222978B70038BAF0 /* ASSpan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASSpan.m; sourceTree = "<group>"; };
 		0EB89F1F20CE65DF00E18144 /* Package.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Package.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EB89F2220CE65DF00E18144 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EB89F2420CE65DF00E18144 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +61,21 @@
 		0E1B71C421FD797D00AA0640 /* Tracer */ = {
 			isa = PBXGroup;
 			children = (
+				0EAB6333222971CC0038BAF0 /* Tracer.tracetemplate */,
 				0E1B71C521FD797D00AA0640 /* Tracer.instrpkg */,
+			);
+			path = Tracer;
+			sourceTree = "<group>";
+		};
+		0EAB6335222974980038BAF0 /* Tracer */ = {
+			isa = PBXGroup;
+			children = (
+				0EAB6336222974B40038BAF0 /* ASTracer.h */,
+				0EAB6337222974B40038BAF0 /* ASTracer.m */,
+				0EAB6339222978A40038BAF0 /* ASScope.h */,
+				0EAB633A222978A40038BAF0 /* ASScope.m */,
+				0EAB633C222978B70038BAF0 /* ASSpan.h */,
+				0EAB633D222978B70038BAF0 /* ASSpan.m */,
 			);
 			path = Tracer;
 			sourceTree = "<group>";
@@ -78,6 +103,7 @@
 		0EB89F2120CE65DF00E18144 /* Package */ = {
 			isa = PBXGroup;
 			children = (
+				0EAB6335222974980038BAF0 /* Tracer */,
 				0EB89F2220CE65DF00E18144 /* AppDelegate.swift */,
 				0EB89F2420CE65DF00E18144 /* ViewController.swift */,
 				0EB89F2620CE65DF00E18144 /* Main.storyboard */,
@@ -208,6 +234,7 @@
 			files = (
 				0EB89F2D20CE65E100E18144 /* LaunchScreen.storyboard in Resources */,
 				0EB89F2A20CE65E100E18144 /* Assets.xcassets in Resources */,
+				0EAB6334222971CC0038BAF0 /* Tracer.tracetemplate in Resources */,
 				0EB89F2820CE65DF00E18144 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,7 +255,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EB89F2520CE65DF00E18144 /* ViewController.swift in Sources */,
+				0EAB633E222978B70038BAF0 /* ASSpan.m in Sources */,
 				0EEB1F6220CFB91F00CBF532 /* Uptime.m in Sources */,
+				0EAB6338222974B40038BAF0 /* ASTracer.m in Sources */,
+				0EAB633B222978A40038BAF0 /* ASScope.m in Sources */,
 				0EB89F2320CE65DF00E18144 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

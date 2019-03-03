@@ -77,7 +77,7 @@ class ViewController: UIViewController {
     @IBAction func closeCurrentScope(_ sender: Any) {
         guard let scope = currentScope else { return }
         closeScope(scope)
-        currentScope = nil;
+        currentScope = nil
     }
     
     // MARK: API

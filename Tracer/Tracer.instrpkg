@@ -15,7 +15,7 @@
         <name>"tracing"</name>
 
         <start-pattern>
-            <message>"span-start:" ?span-name-started ",scope-id:" ?scope-id ",span-order:" ?span-order</message>
+            <message>"span-start:" ?span-name-started ",scope-id:" ?scope-id ",scope-name:" ?scope-name ",span-order:" ?span-order</message>
         </start-pattern>
         <end-pattern>
             <message>"span-stop:" ?span-name-stopped ",scope-id:" ?scope-id</message>
@@ -53,24 +53,34 @@
             <type>string</type>
             <expression>?scope-id</expression>
         </column>
+        
+        <column>
+            <mnemonic>span-scope-name</mnemonic>
+            <title>Scope name</title>
+            <type>string</type>
+            <expression>?scope-name</expression>
+        </column>
 
         <column>
             <mnemonic>status</mnemonic>
             <title>Status</title>
             <type>string</type>
-            <expression>(if span-stop then "Closed" else "In progress")</expression>
+            <expression>(if span-stop then "Finished" else "In progress")</expression>
         </column>
 
         <column>
             <mnemonic>status-color</mnemonic>
             <title>Status color</title>
             <type>event-concept</type>
-            <expression>(if (not ?span-name-stopped) then "Red" else "Green")</expression>
+            <expression>(if (not ?span-name-stopped) then "Blue" else "Green")</expression>
         </column>
 
         <open-interval-template>
             <mnemonic>span-scope</mnemonic>
             <expression>?scope-id</expression>
+            
+            <mnemonic>span-scope-name</mnemonic>
+            <expression>?scope-name</expression>
             
             <mnemonic>span-order</mnemonic>
             <expression>?span-order</expression>
@@ -107,9 +117,9 @@
                 <plot-template>
                     <instance-by>span-scope</instance-by>
                     <label-format>Scope: %s</label-format>
-                    <value-from>span-name</value-from>
+                    <value-from>span-scope</value-from>
                     <color-from>status-color</color-from>
-                    <label-from>span-name</label-from>
+                    <label-from>span-scope-name</label-from>
                 </plot-template>
             </lane>
         </graph>
@@ -122,8 +132,13 @@
             <column>span-start</column>
             <column>span-duration</column>
             <column>span-scope</column>
+            <column>span-scope-name</column>
             <column>status</column>
         </list>
         
     </instrument>
+    
+    <template>
+        <import-from-file>Tracer.tracetemplate</import-from-file>
+    </template>
 </package>
