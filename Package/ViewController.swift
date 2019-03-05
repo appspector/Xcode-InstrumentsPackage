@@ -11,34 +11,27 @@ import os.signpost
 
 struct Scope {
     let name: String
-    let ID: String
     let signpostID: OSSignpostID
     
-    init(name: String, ID: String) {
+    init(name: String) {
         self.name = name
-        self.ID = ID
-        self.signpostID = OSSignpostID(log: ViewController.log, object: ID as AnyObject)
+        self.signpostID = OSSignpostID(log: ViewController.log, object: name as AnyObject)
     }
 }
 
 struct Span {
     let name: String
-    let ID: String
-    let scopeID: String
     let signpostID: OSSignpostID
     
-    init(name: String, ID: String, scopeID: String) {
+    init(name: String) {
         self.name = name
-        self.ID = ID
-        self.scopeID = scopeID
-        self.signpostID = OSSignpostID(log: ViewController.log, object: ID as AnyObject)
+        self.signpostID = OSSignpostID(log: ViewController.log, object: name as AnyObject)
     }
 }
 
 class ViewController: UIViewController {
 
     static let log = OSLog(subsystem: "com.tracer", category: "Behavior")
-    //static let signpostID = OSSignpostID(log: ViewController.log, object: self as AnyObject)
     
     var scopeCounter: Int = 0
     var spanCounter: Int = 0
@@ -53,8 +46,8 @@ class ViewController: UIViewController {
     
     @IBAction func openNewScope(_ sender: Any) {
         if currentScope == nil {
+            currentScope = Scope(name: "Scope \(scopeCounter)")
             scopeCounter += 1
-            currentScope = openScope("Scope \(scopeCounter)")
         }
     }
     
@@ -75,38 +68,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func closeCurrentScope(_ sender: Any) {
-        guard let scope = currentScope else { return }
-        closeScope(scope)
+        guard let _ = currentScope else { return }
         currentScope = nil
     }
     
     // MARK: API
     
-    func openScope(_ name: String) -> Scope {
-        let scope = Scope(name: name, ID: UUID().uuidString)
-        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: scope.signpostID, "scope-open: %{public}@", scope.name)
-        
-        print("Scope opened")
-        
-        return scope
-    }
-    
-    func closeScope(_ scope: Scope) {
-        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: scope.signpostID, "scope-close: %{public}@", scope.name)
-        
-        print("Scope closed")
-    }
-    
     func startSpan(_ name: String, inScope scope: Scope) -> Span {
-        let span = Span(name: name, ID: UUID().uuidString, scopeID: scope.ID)
+        let span = Span(name: name)
         
-        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-start:%{public}@,scope-id:%{public}@,scope-name:%{public}@,span-order:%lld", span.name, span.scopeID, scope.name, currentSpans.count)
+        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-start:%{public}@,scope-name:%{public}@,span-order:%lld", span.name, scope.name, currentSpans.count)
         
         return span
     }
     
     func stopSpan(_ span: Span) {
-        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-stop:%{public}@,scope-id:%{public}@,scope-name:%{public}@", span.name, span.scopeID, self.currentScope!.name)
+        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-stop:%{public}@", span.name)
     }
 
 }

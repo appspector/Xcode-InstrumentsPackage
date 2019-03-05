@@ -18,10 +18,10 @@
         <name>"tracing"</name>
 
         <start-pattern>
-            <message>"span-start:" ?span-name-started ",scope-id:" ?scope-id ",scope-name:" ?scope-name ",span-order:" ?span-order</message>
+            <message>"span-start:" ?span-name-started ",scope-name:" ?scope-name ",span-order:" ?span-order</message>
         </start-pattern>
         <end-pattern>
-            <message>"span-stop:" ?span-name-stopped ",scope-id:" ?scope-id ",scope-name:" ?scope-name</message>
+            <message>"span-stop:" ?span-name-stopped</message>
         </end-pattern>
 
         <start-column>
@@ -56,19 +56,12 @@
             <type>string</type>
             <expression>?span-name-started</expression>
         </column>
-        
-        <column>
-            <mnemonic>span-scope</mnemonic>
-            <title>Scope ID</title>
-            <type>string</type>
-            <expression>?scope-id</expression>
-        </column>
 
         <column>
             <mnemonic>status</mnemonic>
             <title>Status</title>
             <type>string</type>
-            <expression>(if span-stop then "Finished" else "In progress")</expression>
+            <expression>(if (not ?span-name-stopped) then "In progress" else "Finished")</expression>
         </column>
 
         <column>
@@ -79,8 +72,6 @@
         </column>
 
         <open-interval-template>
-            <mnemonic>span-scope</mnemonic>
-            <expression>?scope-id</expression>
             
             <mnemonic>span-order</mnemonic>
             <expression>?span-order</expression>
@@ -96,6 +87,7 @@
         
             <mnemonic>status-color</mnemonic>
             <expression>(if (not ?span-order) then "Green" else "Blue")</expression>
+
         </open-interval-template>
         
     </os-signpost-interval-schema>
