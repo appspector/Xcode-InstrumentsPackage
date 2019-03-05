@@ -68,14 +68,7 @@
             <mnemonic>status</mnemonic>
             <title>Status</title>
             <type>string</type>
-            <expression>(if (not ?span-name-stopped) then "In progress" else "Finished")</expression>
-        </column>
-
-        <column>
-            <mnemonic>status-color</mnemonic>
-            <title>Status color</title>
-            <type>event-concept</type>
-            <expression>(if (not ?span-name-stopped) then "Blue" else "Green")</expression>
+            <expression>(if (not ?span-name-stopped) then "In progress" else (if (= ?span-success 1) then "Finished" else "Failed"))</expression>
         </column>
         
         <column>
@@ -139,8 +132,6 @@
             <column>span-duration</column>
             <column>scope-name</column>
             <column>status</column>
-            <column>span-success</column>
-            <column>success-color</column>
         </list>
         
     </instrument>
