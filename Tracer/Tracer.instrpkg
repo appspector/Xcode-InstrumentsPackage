@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <package>
 	<id>AS.Tracer</id>
+    <version>0.2</version>
 	<title>Tracer</title>
-	<owner>
-		<name>Deszip</name>
+    <owner>
+		<name>Igor</name>
 	</owner>
+    
 
     <os-signpost-interval-schema>
         <id>trace-schema</id>
         <title>Traces</title>
+        
         
         <subsystem>"com.tracer"</subsystem>
         <category>"Behavior"</category>
@@ -18,7 +21,7 @@
             <message>"span-start:" ?span-name-started ",scope-id:" ?scope-id ",scope-name:" ?scope-name ",span-order:" ?span-order</message>
         </start-pattern>
         <end-pattern>
-            <message>"span-stop:" ?span-name-stopped ",scope-id:" ?scope-id</message>
+            <message>"span-stop:" ?span-name-stopped ",scope-id:" ?scope-id ",scope-name:" ?scope-name</message>
         </end-pattern>
 
         <start-column>
@@ -35,14 +38,21 @@
         
         <column>
             <mnemonic>span-order</mnemonic>
-            <title>Span No</title>
+            <title>#</title>
             <type>uint32</type>
             <expression>?span-order</expression>
         </column>
         
         <column>
+            <mnemonic>scope-name</mnemonic>
+            <title>Scope name</title>
+            <type>string</type>
+            <expression>?scope-name</expression>
+        </column>
+        
+        <column>
             <mnemonic>span-name</mnemonic>
-            <title>Span</title>
+            <title>Span name</title>
             <type>string</type>
             <expression>?span-name-started</expression>
         </column>
@@ -52,13 +62,6 @@
             <title>Scope ID</title>
             <type>string</type>
             <expression>?scope-id</expression>
-        </column>
-        
-        <column>
-            <mnemonic>span-scope-name</mnemonic>
-            <title>Scope name</title>
-            <type>string</type>
-            <expression>?scope-name</expression>
         </column>
 
         <column>
@@ -79,11 +82,11 @@
             <mnemonic>span-scope</mnemonic>
             <expression>?scope-id</expression>
             
-            <mnemonic>span-scope-name</mnemonic>
-            <expression>?scope-name</expression>
-            
             <mnemonic>span-order</mnemonic>
             <expression>?span-order</expression>
+            
+            <mnemonic>scope-name</mnemonic>
+            <expression>?scope-name</expression>
             
             <mnemonic>span-name</mnemonic>
             <expression>?span-name-started</expression>
@@ -92,7 +95,7 @@
             <expression>(if (not ?span-order) then "Closed" else "In progress")</expression>
         
             <mnemonic>status-color</mnemonic>
-            <expression>(if (not ?span-order) then "Green" else "Red")</expression>
+            <expression>(if (not ?span-order) then "Green" else "Blue")</expression>
         </open-interval-template>
         
     </os-signpost-interval-schema>
@@ -115,11 +118,11 @@
                 <title>Trace</title>
                 <table-ref>traces-table</table-ref>
                 <plot-template>
-                    <instance-by>span-scope</instance-by>
+                    <instance-by>scope-name</instance-by>
                     <label-format>Scope: %s</label-format>
-                    <value-from>span-scope</value-from>
+                    <value-from>scope-name</value-from>
                     <color-from>status-color</color-from>
-                    <label-from>span-scope-name</label-from>
+                    <label-from>span-name</label-from>
                 </plot-template>
             </lane>
         </graph>
@@ -131,14 +134,13 @@
             <column>span-name</column>
             <column>span-start</column>
             <column>span-duration</column>
-            <column>span-scope</column>
-            <column>span-scope-name</column>
+            <column>scope-name</column>
             <column>status</column>
         </list>
         
     </instrument>
     
-    <template>
-        <import-from-file>Tracer.tracetemplate</import-from-file>
-    </template>
+<!--    <template>-->
+<!--        <import-from-file>Tracer.tracetemplate</import-from-file>-->
+<!--    </template>-->
 </package>

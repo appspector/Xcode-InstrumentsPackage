@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     @IBAction func openNewScope(_ sender: Any) {
         if currentScope == nil {
             scopeCounter += 1
-            currentScope = openScope("\(scopeCounter)")
+            currentScope = openScope("Scope \(scopeCounter)")
         }
     }
     
@@ -100,13 +100,13 @@ class ViewController: UIViewController {
     func startSpan(_ name: String, inScope scope: Scope) -> Span {
         let span = Span(name: name, ID: UUID().uuidString, scopeID: scope.ID)
         
-        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-start:%{public}@,scope-id:%{public}@,span-order:%lld", span.name, span.scopeID, currentSpans.count)
+        os_signpost(.begin, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-start:%{public}@,scope-id:%{public}@,scope-name:%{public}@,span-order:%lld", span.name, span.scopeID, scope.name, currentSpans.count)
         
         return span
     }
     
     func stopSpan(_ span: Span) {
-        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-stop:%{public}@,scope-id:%{public}@", span.name, span.scopeID)
+        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-stop:%{public}@,scope-id:%{public}@,scope-name:%{public}@", span.name, span.scopeID, self.currentScope!.name)
     }
 
 }
