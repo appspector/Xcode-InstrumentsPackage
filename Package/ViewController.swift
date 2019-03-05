@@ -58,12 +58,21 @@ class ViewController: UIViewController {
         currentSpans.append(span)
     }
     
-    @IBAction func stopCurrentSpan(_ sender: Any) {
+    @IBAction func stopCurrentSpanWithSuccess(_ sender: Any) {
         if currentSpans.count == 0 {
             return
         }
         guard let span = currentSpans.last else { return }
-        stopSpan(span)
+        stopSpan(span, success: 1)
+        currentSpans.removeLast()
+    }
+    
+    @IBAction func stopCurrentSpanWithFailure(_ sender: Any) {
+        if currentSpans.count == 0 {
+            return
+        }
+        guard let span = currentSpans.last else { return }
+        stopSpan(span, success: 0)
         currentSpans.removeLast()
     }
     
@@ -82,8 +91,8 @@ class ViewController: UIViewController {
         return span
     }
     
-    func stopSpan(_ span: Span) {
-        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-stop:%{public}@", span.name)
+    func stopSpan(_ span: Span, success: Int) {
+        os_signpost(.end, log: ViewController.log, name: "tracing", signpostID: span.signpostID, "span-stop:%{public}@,span-success:%lld", span.name, success)
     }
 
 }

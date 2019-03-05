@@ -18,31 +18,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qCj-Zl-l6Z">
-                                <rect key="frame" x="118.5" y="243.5" width="138" height="180"/>
+                                <rect key="frame" x="117.5" y="218.5" width="140" height="230"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3EF-Aq-X6Q">
-                                        <rect key="frame" x="11.5" y="0.0" width="115" height="30"/>
+                                        <rect key="frame" x="12.5" y="0.0" width="115" height="30"/>
                                         <state key="normal" title="Open new scope"/>
                                         <connections>
                                             <action selector="openNewScope:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b8V-xB-9Zk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urn-gM-rLP">
-                                        <rect key="frame" x="33.5" y="50" width="71" height="30"/>
+                                        <rect key="frame" x="34.5" y="50" width="71" height="30"/>
                                         <state key="normal" title="Start span"/>
                                         <connections>
                                             <action selector="startNewSpan:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KC3-ya-fso"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zf-Lu-gdc">
-                                        <rect key="frame" x="34" y="100" width="70" height="30"/>
-                                        <state key="normal" title="Stop span"/>
+                                        <rect key="frame" x="0.0" y="100" width="140" height="30"/>
+                                        <state key="normal" title="Stop span (success)"/>
                                         <connections>
-                                            <action selector="stopCurrentSpan:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zCF-ap-qMG"/>
+                                            <action selector="stopCurrentSpanWithSuccess:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8pz-3F-jSm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gep-PR-LSA">
+                                        <rect key="frame" x="6.5" y="150" width="127" height="30"/>
+                                        <state key="normal" title="Stop span (failure)"/>
+                                        <connections>
+                                            <action selector="stopCurrentSpanWithFailure:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8fm-Ke-vAz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggs-Bd-otW">
-                                        <rect key="frame" x="0.0" y="150" width="138" height="30"/>
+                                        <rect key="frame" x="1" y="200" width="138" height="30"/>
                                         <state key="normal" title="Close current scope"/>
                                         <connections>
                                             <action selector="closeCurrentScope:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Frn-Oz-7jN"/>

@@ -21,7 +21,7 @@
             <message>"span-start:" ?span-name-started ",scope-name:" ?scope-name ",span-order:" ?span-order</message>
         </start-pattern>
         <end-pattern>
-            <message>"span-stop:" ?span-name-stopped</message>
+            <message>"span-stop:" ?span-name-stopped ",span-success:" ?span-success</message>
         </end-pattern>
 
         <start-column>
@@ -41,6 +41,13 @@
             <title>#</title>
             <type>uint32</type>
             <expression>?span-order</expression>
+        </column>
+        
+        <column>
+            <mnemonic>span-success</mnemonic>
+            <title>Success</title>
+            <type>uint32</type>
+            <expression>?span-success</expression>
         </column>
         
         <column>
@@ -70,6 +77,13 @@
             <type>event-concept</type>
             <expression>(if (not ?span-name-stopped) then "Blue" else "Green")</expression>
         </column>
+        
+        <column>
+            <mnemonic>success-color</mnemonic>
+            <title>Success color</title>
+            <type>event-concept</type>
+            <expression>(if (not ?span-name-stopped) then "Blue" else (if (= ?span-success 1) then "Green" else "Red"))</expression>
+        </column>
 
         <open-interval-template>
             
@@ -84,9 +98,6 @@
 
             <mnemonic>status</mnemonic>
             <expression>(if (not ?span-order) then "Closed" else "In progress")</expression>
-        
-            <mnemonic>status-color</mnemonic>
-            <expression>(if (not ?span-order) then "Green" else "Blue")</expression>
 
         </open-interval-template>
         
@@ -113,7 +124,7 @@
                     <instance-by>scope-name</instance-by>
                     <label-format>Scope: %s</label-format>
                     <value-from>scope-name</value-from>
-                    <color-from>status-color</color-from>
+                    <color-from>success-color</color-from>
                     <label-from>span-name</label-from>
                 </plot-template>
             </lane>
@@ -128,6 +139,8 @@
             <column>span-duration</column>
             <column>scope-name</column>
             <column>status</column>
+            <column>span-success</column>
+            <column>success-color</column>
         </list>
         
     </instrument>
