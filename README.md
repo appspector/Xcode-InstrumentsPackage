@@ -1,5 +1,6 @@
 # XCode Custom Instruments Package
 This is a sample project illustrating custom instrument package built with signpost schema.
+See detailed description here: https://medium.com/appspector/building-custom-instruments-package-9d84fd9339b6
 
 You will need Xcode 10 GM and iOS 12 to build this.
 
